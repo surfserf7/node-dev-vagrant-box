@@ -1,1 +1,1 @@
-include osconfig
+import 'nodes.pp'
