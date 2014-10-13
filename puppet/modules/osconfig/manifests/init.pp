@@ -30,6 +30,11 @@ class osconfig {
     type => 'rsa',
     key => 'AAAAB3NzaC1yc2EAAAABJQAAAIBpFV/LLEbj3JEu277cA1zEwdGdTfPATitYyl6Vvy4zOtyLbFXM6opfVvaTYwsp1fn+mO56RvA7YKNK4tkPr3s4b8EFWKw1ViXVK38ViQNcTa6oF8Y/bKtPZ7NHviGKfQ9XiiUhjsJjSYa7cLF9KZAZS3t6ZSHF+vFhBKOahjGuAQ==',
   }
+  ssh_authorized_key { 'vagrant-ssh-lake':
+    user => 'vagrant',
+    type => 'rsa',
+    key => 'AAAAB3NzaC1yc2EAAAABJQAAAIBezytodhxJD0cQMot7qQKq+IJzj+g+lPVOwiWJHMRUEsonU5Lbe8iUoeQPj8tqJGLCSO5l6xRqtR2m6htTIoeAj73Bex8ZzXodtSPiOY5rmxeGzaWV+Q2qHB/obdY+rCY1vnhya48a9VrC41BucvKaboySN3yseF2t5aakRkTZJw==',
+  }
 
   # Set customized .bashrc for vagrant user
   file {
