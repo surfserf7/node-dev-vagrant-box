@@ -11,10 +11,6 @@ class osconfig {
     command => '/usr/bin/apt-get update';
   }
 
-#  host { 'hostmachine':
-#    ip => '192.168.0.1';
-#  }
-
   # Set up vagrant user. Vagrant itself already does this,
   # but we need to give Puppet a resource to make modifications:
   user { 'vagrant':

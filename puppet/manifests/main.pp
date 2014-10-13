@@ -34,13 +34,14 @@ class othertools {
 
 class nodejs {
   exec { "git_clone_n":
+    onlyif => "test ! -d /home/vagrant/n/",
     command => "git clone https://github.com/visionmedia/n.git /home/vagrant/n",
     path => ["/bin", "/usr/bin"],
     require => [Exec["aptGetUpdate"], Package["git"], Package["curl"], Package["g++"]]
   }
 
   exec { "install_n":
-    command => "make install",
+    command => "sudo make install",
     path => ["/bin", "/usr/bin"],
     cwd => "/home/vagrant/n",
     require => Exec["git_clone_n"]
@@ -48,7 +49,7 @@ class nodejs {
 
   exec { "install_node":
     command => "n stable",
-    path => ["/bin", "/usr/bin", "/usr/local/bin"],  
+    path => ["/bin", "/usr/bin", "/usr/local/bin"],
     require => [Exec["git_clone_n"], Exec["install_n"]]
   }
 }
@@ -73,5 +74,5 @@ class redis-cl {
 include apt_update
 include othertools
 include nodejs
-include mongodb
-include redis-cl
+# include mongodb
+# include redis-cl
