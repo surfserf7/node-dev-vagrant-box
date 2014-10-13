@@ -10,6 +10,7 @@ Vagrant.configure(VAGRANTFILE_API_VERSION) do |config|
   config.vm.network "forwarded_port", guest: 80, host: 8080
   config.vm.synced_folder "./app", "/home/vagrant/app"
   config.vm.hostname = "node-dev"
+  config.vm.network "private_network", ip: "192.168.2.2"
 
   # Enable provisioning with Puppet stand alone.  Puppet manifests
   # are contained in a directory path relative to this Vagrantfile.
