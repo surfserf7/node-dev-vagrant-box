@@ -30,6 +30,11 @@ class othertools {
         ensure => present,
         require => Exec["aptGetUpdate"]
     }
+	
+	package { "make":
+        ensure => present,
+        require => Exec["aptGetUpdate"]
+    }
 }
 
 class nodejs {
@@ -44,7 +49,7 @@ class nodejs {
     command => "sudo make install",
     path => ["/bin", "/usr/bin"],
     cwd => "/home/vagrant/n",
-    require => Exec["git_clone_n"]
+    require => [Exec["git_clone_n"], Package["make"]]
   }
 
   exec { "install_node":
