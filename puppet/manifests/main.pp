@@ -30,7 +30,7 @@ class othertools {
         ensure => present,
         require => Exec["aptGetUpdate"]
     }
-	
+
 	package { "make":
         ensure => present,
         require => Exec["aptGetUpdate"]
