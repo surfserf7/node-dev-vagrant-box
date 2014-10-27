@@ -48,7 +48,7 @@ class osbeginconfig {
       owner => 'vagrant',
       group => 'vagrant',
       mode  => '0644',
-      source => 'puppet:///modules/osconfig/bashrc';
+      source => 'puppet:///modules/osbeginconfig/bashrc';
   }
 
   # Example creating a file with inline content

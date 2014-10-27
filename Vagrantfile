@@ -7,7 +7,7 @@ VAGRANTFILE_API_VERSION = "2"
 Vagrant.configure(VAGRANTFILE_API_VERSION) do |config|
   # All Vagrant configuration is done here
   config.vm.box = "hashicorp/precise32"
-  config.vm.network "forwarded_port", guest: 80, host: 8080
+  config.vm.network "forwarded_port", guest: 8080, host: 3000
   config.vm.synced_folder "./app", "/home/vagrant/app"
   config.vm.hostname = "node-dev"
   config.vm.network "private_network", ip: "192.168.2.2"
@@ -22,5 +22,7 @@ Vagrant.configure(VAGRANTFILE_API_VERSION) do |config|
     puppet.manifest_file  = "site.pp"
     puppet.module_path = "puppet/modules"
   end
+
+  config.vm.post_up_message = "PuppetBox: 192.168.2.2;  port 8080 --> 3000"
 
 end
