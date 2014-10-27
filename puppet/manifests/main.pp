@@ -1,9 +1,9 @@
-class apt_update {
-    exec { "aptGetUpdate":
-        command => "sudo apt-get update",
-        path => ["/bin", "/usr/bin"]
-    }
-}
+# class apt_update {
+#     exec { "aptGetUpdate":
+#         command => "sudo apt-get update",
+#         path => ["/bin", "/usr/bin"]
+#     }
+# }
 
 class othertools {
     package { "git":
@@ -76,7 +76,7 @@ class redis-cl {
   class { 'redis': }
 }
 
-include apt_update
+# include apt_update
 include othertools
 include nodejs
 # include mongodb

@@ -1,15 +1,25 @@
-# == Class: osconfig
+# == Class: osbeginconfig
 #
 # Performs initial configuration of the os itself.
 #
-class osconfig {
+
+class apt_update {
+    exec { "aptGetUpdate":
+        command => "sudo apt-get update",
+        path => ["/bin", "/usr/bin"]
+    }
+}
+
+class osbeginconfig {
   notify {
-    ">>>>> This is a message from Puppet's osconfig module!":
+    ">>>>> Puppet is running the osbeginconfig class.":
   }
 
-  exec { 'apt-get update':
-    command => '/usr/bin/apt-get update';
-  }
+  include apt_update
+
+  # exec { 'apt-get update':
+  #   command => '/usr/bin/apt-get update';
+  # }
 
   # Set up vagrant user. Vagrant itself already does this,
   # but we need to give Puppet a resource to make modifications:
@@ -20,7 +30,7 @@ class osconfig {
     managehome => true,
     password => 'vagrant',
   }
-  # Set our SSH public key for the vagrant user
+  # Set our SSH public keys for the vagrant user
   ssh_authorized_key { 'vagrant-ssh':
     user => 'vagrant',
     type => 'rsa',
