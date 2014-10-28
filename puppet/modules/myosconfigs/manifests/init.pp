@@ -1,4 +1,4 @@
-# == Class: osbeginconfig
+# == Class: myosconfigs
 #
 # Performs initial configuration of the os itself.
 #
@@ -10,16 +10,12 @@ class apt_update {
     }
 }
 
-class osbeginconfig {
+class myosconfigs {
   notify {
-    ">>>>> Puppet is running the osbeginconfig class.":
+    ">>>>> Puppet is running the myosconfigs class.":
   }
 
   include apt_update
-
-  # exec { 'apt-get update':
-  #   command => '/usr/bin/apt-get update';
-  # }
 
   # Set up vagrant user. Vagrant itself already does this,
   # but we need to give Puppet a resource to make modifications:
@@ -48,7 +44,7 @@ class osbeginconfig {
       owner => 'vagrant',
       group => 'vagrant',
       mode  => '0644',
-      source => 'puppet:///modules/osbeginconfig/bashrc';
+      source => 'puppet:///modules/myosconfigs/bashrc';
   }
 
   # Example creating a file with inline content
@@ -59,8 +55,31 @@ class osbeginconfig {
       mode  => '0644',
       content =>
 'Hello, node-dev!
-How ya doing?
-';
+How ya doing?';
+  }
+
+  exec { "git_user_name":
+    command => 'git config --system user.name "surfserf7"',
+    path => ["/bin", "/usr/bin"],
+    require => Package["git"]
+  }
+
+    exec { "git_user_email":
+    command => 'git config --system user.email "sngware@gmail.com"',
+    path => ["/bin", "/usr/bin"],
+    require => Package["git"]
+  }
+
+  exec { "git_alias_lgl":
+    command => 'git config --system alias.lgl "log --oneline --abbrev-commit --all --graph --decorate --color"',
+    path => ["/bin", "/usr/bin"],
+    require => Package["git"]
+  }
+
+  exec { "git_alias_lg":
+    command => 'git config --system alias.lg "log --graph --pretty=format:\'%Cred%h%Creset -%C(yellow)%d%Creset %s %Cgreen(%cr) %C(bold blue)<%an>%Creset\' --abbrev-commit --date=relative"',
+    path => ["/bin", "/usr/bin"],
+    require => Package["git"]
   }
 
 }

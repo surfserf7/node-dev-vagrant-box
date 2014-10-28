@@ -76,7 +76,6 @@ class redis-cl {
   class { 'redis': }
 }
 
-# include apt_update
 include othertools
 include nodejs
 # include mongodb
