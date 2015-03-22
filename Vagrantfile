@@ -23,6 +23,6 @@ Vagrant.configure(VAGRANTFILE_API_VERSION) do |config|
     puppet.module_path = "puppet/modules"
   end
 
-  config.vm.post_up_message = "PuppetBox: 192.168.2.2;  port 8080 --> 3000"
+  config.vm.post_up_message = "Node-Dev Box: 192.168.2.2;  port 8080 --> 3000"
 
 end
